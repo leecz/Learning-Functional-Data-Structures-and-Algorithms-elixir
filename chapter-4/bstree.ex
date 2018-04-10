@@ -58,6 +58,7 @@ defmodule BinarySearchTree do
     count(tree.left) + count(tree.right) + 1
   end
 
+  # 到 k 层有多少个节点
   def get_k_level(_tree, 0), do: 0
   def get_k_level(_tree, 1), do: 1
   def get_k_level(nil, _k), do: 0
@@ -66,6 +67,7 @@ defmodule BinarySearchTree do
     get_k_level(tree.left, k - 1) + get_k_level(tree.right, k - 1)
   end
 
+  # 叶子节点个数
   def count_leaf(nil), do: 0
   def count_leaf(tree) do
     if(!tree.left && !tree.right) do
@@ -75,6 +77,16 @@ defmodule BinarySearchTree do
     end
   end
 
+  # 镜像，翻转
+  def mirror(nil), do: 
+  def mirror( tree ) do
+    temp = tree.left
+    tree.left = tree.right
+    tree.right = temp
+
+    mirror(tree.left)
+    mirror(tree.right)
+  end
 end
 
 bt = BinarySearchTree.new(5)
